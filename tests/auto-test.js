@@ -2,15 +2,15 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
 
-    //navigate to Myra home page and verify that logo and text are displayed
+  //navigate to Myra home page and verify that logo and text are displayed
   await page.goto('https://status.myrasecurity.com/')
   const element = page.locator('.logo')
   await expect(element).toBeVisible()
   await expect(element).toHaveText('Myra Security GmbH')
 
-//verify that case id 44 is displayed
+  //verify that case id 44 is displayed
   const elementCaseId = page.locator('"Case ID: 44"')
- await expect(elementCaseId).toBeVisible()
+  await expect(elementCaseId).toBeVisible()
 
   //verify Maintenance Zürich heading is displayed
   const elementMaitenance = page.locator('"Maintenance - Zürich (ZUR1)"')
