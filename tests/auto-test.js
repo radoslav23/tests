@@ -2,19 +2,16 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
 
-  //navigate to Myra home page and verify that logo and text are displayed
+  //navigate to Myra home page and verify that logo is displayed
   await page.goto('https://status.myrasecurity.com/')
-  const element = page.locator('.logo')
-  await expect(element).toBeVisible()
-  await expect(element).toHaveText('Myra Security GmbH')
+  await page.getByRole('link', { name: 'Myra Security GmbH' }).isEnabled();
+
 
   //verify that case id 44 is displayed
-  const elementCaseId = page.locator('"Case ID: 44"')
-  await expect(elementCaseId).toBeVisible()
+  await page.getByText('Case ID: 44').isEnabled();
 
   //verify Maintenance Zürich heading is displayed
-  const elementMaitenance = page.locator('"Maintenance - Zürich (ZUR1)"')
-  await expect(elementMaitenance).toBeVisible()
+  await page.getByText('Maintenance - Zürich (ZUR1)').isEnabled();
 
   //verify maitenance start and end date
   await page.getByText('Start: Thursday, 6 October 2022 - 14:00 UTC').isEnabled();
@@ -30,8 +27,7 @@ test('test', async ({ page }) => {
 
   //navigate to maintenance section
   await page.getByText('Maintenance').click()
-  const elementCaseId44 = page.locator('"Case ID: 44"')
-  await expect(elementCaseId44).toBeVisible()
+  await page.getByText('Case ID: 44').isEnabled();
 
   //navigate to rss
   await page.getByRole('link', { name: 'RSS' }).click()
